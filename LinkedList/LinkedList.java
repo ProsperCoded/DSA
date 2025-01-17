@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class LinkedList {
   private Node head;
   private Node tail;
+  public int size;
   LinkedList(){
     this.head = null;
     this.tail = null;
@@ -17,6 +18,7 @@ public class LinkedList {
       node.addNext(this.head);
       this.head = node;
     }
+    this.size++;
   }
   public void addLast(Integer value){
     Node node  = new Node(value);
@@ -27,15 +29,16 @@ public class LinkedList {
       this.tail.addNext(node);
       this.tail = node;
     }
+    this.size++;
   }
   public void deleteFirst(){
-    if(this.head != null){
-      var reference  = this.head;
-      // ? Previous head will be removed by default 
-      this.head = this.head.next;
-      // remove deleted node pointer to head, so it is garbage collected  
-      reference.next = null;
-    }
+   if(this.isEmpty()) return;
+    var reference  = this.head;
+    // ? Previous head will be removed by default 
+    this.head = this.head.next;
+    // remove deleted node pointer to head, so it is garbage collected  
+    reference.next = null;
+    this.size--;
   }
   public void deleteLast(){
     Node currentNode = head;
@@ -50,6 +53,7 @@ public class LinkedList {
       }
 
       currentNode = currentNode.next;
+      this.size--;
     }
     // * point to second to last element as the new tail
     this.tail = secondToLast;
@@ -99,6 +103,23 @@ public class LinkedList {
     var temp = this.head;
     this.head = this.tail;
     this.tail = temp;
+  }
+  public int getKthFromTheEnd(int k){
+    // ensure k isn't out of range 
+    if(this.size< k) throw new IndexOutOfBoundsException();
+    // ? going to apply two pointer method 
+    var p1 = this.head;
+    var p2 = this.head;
+    // * move p2 k-1 distance from p1 
+    for (int i = 1; i < k; i++) {
+      p2 = p2.next;
+    }    
+    // move both pointers to  the end of list, maintaining their distance 
+    while(p2.next!= null){
+      p1 = p1.next;
+      p2 = p2.next;
+    }
+    return p1.value;
   }
   public ArrayList<Integer> all(){
     ArrayList<Integer> arr = new ArrayList<Integer>();
