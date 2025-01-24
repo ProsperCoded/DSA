@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-public class CustomStack {
+public class StackApplications {
   String text; 
-  public CustomStack(String text){
+  public StackApplications(String text){
     this.text = text;
   }
   public StringBuffer reverse(){
