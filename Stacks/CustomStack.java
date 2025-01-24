@@ -22,8 +22,8 @@ public class CustomStack {
     }
     return revered;
   }
-  public boolean  checkExpression(){
-    var blocks = new ArrayList<List>();
+  public boolean checkExpression() {
+    var blocks = new ArrayList<List<String>>();
     var squareBrackets = Arrays.asList("[", "]");
     var braces = Arrays.asList("(", ")");
     var triangleBrackets = Arrays.asList("<", ">");
@@ -31,23 +31,20 @@ public class CustomStack {
     blocks.add(braces);
     blocks.add(triangleBrackets);
 
-    // * stack to store block that comes up in string 
     var stack = new Stack<Character>();
     for (int i = 0; i < text.length(); i++) {
       char c = text.charAt(i);
-      for (int j = 0; j < braces.size(); j++) {
-        var block = blocks.get(j);
-        if (String.valueOf(c) == block.get(0)){
+      for (var block : blocks) {
+        if (String.valueOf(c).equals(block.get(0))) {
           stack.push(c);
-        }
-        if (String.valueOf(c) == block.get(1)){
-          if (stack.isEmpty() || !stack.peek().toString().equals(block.get(0))) {
+        } else if (String.valueOf(c).equals(block.get(1))) {
+          if (stack.isEmpty() || !String.valueOf(stack.peek()).equals(block.get(0))) {
             return false;
           }
           stack.pop();
         }
       }
     }
-    return true;
+    return stack.isEmpty();
   }
 }
