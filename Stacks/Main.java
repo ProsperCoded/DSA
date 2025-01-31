@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class Main {
   // public static 
-  // checking if string i                s a balanced expression
+  // checking if string is a balanced expression
   public static void main(String[] args) {
     var stack = new CustomStack();
     stack.push(3);
