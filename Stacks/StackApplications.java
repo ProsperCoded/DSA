@@ -11,7 +11,9 @@ public class StackApplications {
     this.text = text;
   }
   public StringBuffer reverse(){
+    
     var stack = new Stack<Character>();
+    // stack.
     var revered  = new StringBuffer();
     for( int i =0; i< text.length(); i++){
       var c = text.charAt(i);
