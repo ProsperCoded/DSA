@@ -14,9 +14,6 @@ public class Main {
     queue.insert(1);
     queue.insert(2);
     queue.insert(7);
-    queue.insert(6);
-    queue.insert(6);
-    queue.insert(5);
     // queue.insert(3);
     System.out.println(queue.toString());
   }

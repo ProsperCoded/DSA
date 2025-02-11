@@ -12,7 +12,7 @@ public class PriorityQueue {
     this.size = s;
   }
   public void insert(int value){
-    if(elements.length==size){
+    if(count==size){
       throw new IllegalArgumentException ();
     }
     if(count==-1){
@@ -21,8 +21,6 @@ public class PriorityQueue {
       return;
     }
     for (int i=count; i >= 0; i-- ){
-      System.out.println(value);
-      System.out.println(elements[i]);
       if(elements[i] > value){
         var temp   = value;
         elements[i+1]  = elements[i];
