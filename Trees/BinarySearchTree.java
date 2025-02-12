@@ -2,9 +2,9 @@ package Trees;
 
 public class BinarySearchTree {
   private class Node {
-    public Node leftChildNode;
-    public Node rightChildNode;
-    public int value;
+    private Node leftChild;
+    private Node rightChild;
+    private int value;
 
     public Node(int v){
       this.value = v;
@@ -23,17 +23,17 @@ public class BinarySearchTree {
     while (current != null){
       lastParent = current;
       if(v > root.value){
-        current = current.rightChildNode;
+        current = current.rightChild;
         
       }else {
-        current = current.leftChildNode;
+        current = current.leftChild;
       }
       // * track the parent, so we can add data later
     }
     if(v > lastParent.value){
-      lastParent.rightChildNode = new Node(v);
+      lastParent.rightChild = new Node(v);
     } else if(v <= lastParent.value){
-      lastParent.leftChildNode = new Node(v);
+      lastParent.leftChild = new Node(v);
     }
   };
   public boolean find(int v){
@@ -41,9 +41,9 @@ public class BinarySearchTree {
 
     while (current != null){
       if(v > current.value){
-        current = current.rightChildNode;
+        current = current.rightChild;
       } else if(v < current.value){
-        current = current.leftChildNode;
+        current = current.leftChild;
       }else{
         // It is equal to the value 
         return true;
