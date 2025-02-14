@@ -1,5 +1,6 @@
 package Trees;
 
+// * My solution
 public class BinarySearchTree {
   private class Node {
     private Node leftChild;
