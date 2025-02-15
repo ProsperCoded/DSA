@@ -10,7 +10,6 @@ public class TransverseBinaryTree {
     public Node(int v){
       this.value = v;
     }
-    // public 
   }
   private Node root;
 
@@ -56,6 +55,13 @@ public class TransverseBinaryTree {
   public void transverseInOrder(){
     this.transverseInOrder(root);
   }
+  public void transversePostOrder(){
+    this.transversePostOrder(root);
+  }
+  public void transversePreOrder(){
+    this.transversePreOrder(root);
+  }
+
   private void transverseInOrder(Node root){
     if(root == null) return;
 
@@ -63,4 +69,35 @@ public class TransverseBinaryTree {
     System.out.println(root.value);
     transverseInOrder(root.rightChild);
   }
+  private void transversePreOrder(Node root){
+    if(root == null) return;
+
+    System.out.println(root.value);
+    transverseInOrder(root.leftChild);
+    transverseInOrder(root.rightChild);
+  }
+  private void transversePostOrder(Node root){
+    if(root == null) return;
+
+    transverseInOrder(root.leftChild);
+    transverseInOrder(root.rightChild);
+    System.out.println(root.value);
+  }
+  private int max(int l, int r){
+    if(l > r) return l;
+    return l;
+  }
+  public int height(){
+    return height(root);
+  }
+  private int height(Node root){
+    if(root == null) return -1;
+    if(root.leftChild == null && root.rightChild==null) return 0;
+
+    var l = height(root.leftChild);
+    var r = height(root.rightChild);
+    System.out.println(root.value);
+    return 1+ max(l, r);
+  }
+
 }

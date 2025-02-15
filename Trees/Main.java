@@ -10,9 +10,11 @@ public class Main {
     tree.insert(5);
     tree.insert(6);
     tree.insert(7);
-    tree.insert(8);
-    tree.insert(9);
-    tree.insert(10);
-    tree.transverseInOrder();
+    // tree.insert(8);
+    // tree.insert(9);
+    // tree.insert(10);
+    var height = tree.height();
+    System.err.println("Height");
+    System.err.println(height);
   }
 }
