@@ -87,6 +87,10 @@ public class TransverseBinaryTree {
     if(l > r) return l;
     return l;
   }
+  private int min(int l, int r){
+    if(l > r) return r;
+    return l;
+  }
   public int height(){
     return height(root);
   }
@@ -98,6 +102,17 @@ public class TransverseBinaryTree {
     var r = height(root.rightChild);
     System.out.println(root.value);
     return 1+ max(l, r);
+  }
+  public int min(){
+    return min(root);
+  }
+  private int min(Node root){
+    if(root == null) return Integer.MAX_VALUE;
+    if(root.leftChild == null && root.rightChild==null) return root.value;
+    var l = min(root.leftChild);
+    var r = min(root.rightChild);
+
+    return min(min(l, r), root.value);
   }
 
 }

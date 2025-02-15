@@ -13,8 +13,8 @@ public class Main {
     // tree.insert(8);
     // tree.insert(9);
     // tree.insert(10);
-    var height = tree.height();
-    System.err.println("Height");
-    System.err.println(height);
+    var min = tree.min();
+    System.err.println("Minium");
+    System.err.println(min);
   }
 }
