@@ -10,11 +10,17 @@ public class Main {
     tree.insert(5);
     tree.insert(6);
     tree.insert(7);
-    // tree.insert(8);
-    // tree.insert(9);
-    // tree.insert(10);
-    var min = tree.min();
-    System.err.println("Minium");
-    System.err.println(min);
+  
+    var tree2 = new TransverseBinaryTree();
+    tree2.insert(4);
+    tree2.insert(3);
+    tree2.insert(1);
+    tree2.insert(2);
+    tree2.insert(5);
+    tree2.insert(6);
+    tree2.insert(7);
+
+    var equals = tree.equal(tree2.getNode());
+    System.out.println(equals);
   }
 }

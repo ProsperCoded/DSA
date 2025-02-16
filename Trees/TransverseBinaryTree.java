@@ -134,4 +134,29 @@ public class TransverseBinaryTree {
 
     return parent.value;
   }
+  public Node getNode(){
+    return root;
+  }
+  // Check if tree equals another 
+  public boolean equal(Node tree){
+    return equals(root, tree);
+  }
+  private boolean equals(Node tree1, Node tree2){
+    // * both has the same tail 
+    if(tree1 == null && tree2 == null) return true;
+
+    if(tree1 == null || tree2 == null) {
+      return false;
+    };
+
+    if(tree1.value != tree2.value) {
+      return false;
+    };
+
+    // recursively check the left and right node 
+    var leftEqual = equals(tree1.leftChild, tree2.leftChild);
+    var rightEqual = equals(tree1.rightChild, tree2.rightChild);
+
+    return leftEqual && rightEqual;
+  }
 }
