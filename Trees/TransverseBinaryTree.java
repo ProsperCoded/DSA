@@ -1,5 +1,7 @@
 package Trees;
 
+import javax.swing.TransferHandler.TransferSupport;
+
 // * My solution
 public class TransverseBinaryTree {
   private class Node {
@@ -134,13 +136,12 @@ public class TransverseBinaryTree {
 
     return parent.value;
   }
-  public Node getNode(){
-    return root;
-  }
   // Check if tree equals another 
-  public boolean equal(Node tree){
-    return equals(root, tree);
+  public boolean equal(TransverseBinaryTree tree){
+    if(tree == null) return false;
+    return equals(root, tree.root);
   }
+  // ? solution by me(prosper coded)
   private boolean equals(Node tree1, Node tree2){
     // * both has the same tail 
     if(tree1 == null && tree2 == null) return true;
@@ -158,5 +159,17 @@ public class TransverseBinaryTree {
     var rightEqual = equals(tree1.rightChild, tree2.rightChild);
 
     return leftEqual && rightEqual;
+  }
+
+  // ? solution by tutorial
+  private boolean equals2(Node first, Node second){
+    if( first == null && second == null) return true;
+
+    if(first != null && second != null){
+      return first.value == second.value && equals2(first.leftChild, second.leftChild) && equals2(first.rightChild, second.rightChild);
+    }
+
+    // * case where one is null and the other is not 
+    return false;
   }
 }
