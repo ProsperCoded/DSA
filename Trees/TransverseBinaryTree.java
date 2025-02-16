@@ -182,10 +182,10 @@ public class TransverseBinaryTree {
     if(node.value > max || node.value < min){
       return false;
     }
-    var leftIsValid = isBinarySearchTree(node.leftChild, min, node.value);
+    var leftIsValid = isBinarySearchTree(node.leftChild, min, node.value - 1);
     // optimized if the left is false, don't check right 
     if(!leftIsValid) return false;
-    var rightIsValid = isBinarySearchTree(node.rightChild, node.value, max);
+    var rightIsValid = isBinarySearchTree(node.rightChild, node.value + 1, max);
 
     return rightIsValid;
   }
