@@ -172,4 +172,21 @@ public class TransverseBinaryTree {
     // * case where one is null and the other is not 
     return false;
   }
+
+  public boolean isBinarySearchTree(){
+    //                       NODE ,   INFINITY,       INFINITY
+    return isBinarySearchTree(root,  Integer.MIN_VALUE,Integer.MAX_VALUE);
+  }
+  private boolean isBinarySearchTree(Node node, int min, int max){
+    if (node == null) return true;
+    if(node.value > max || node.value < min){
+      return false;
+    }
+    var leftIsValid = isBinarySearchTree(node.leftChild, min, node.value);
+    // optimized if the left is false, don't check right 
+    if(!leftIsValid) return false;
+    var rightIsValid = isBinarySearchTree(node.rightChild, node.value, max);
+
+    return rightIsValid;
+  }
 }

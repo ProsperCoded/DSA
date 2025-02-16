@@ -20,7 +20,7 @@ public class Main {
     tree2.insert(6);
     tree2.insert(7);
 
-    var equals = tree.equal(tree2);
-    System.out.println(equals);
+    // var equals = tree.equal(tree2);
+    System.out.println(tree.isBinarySearchTree());
   }
 }
