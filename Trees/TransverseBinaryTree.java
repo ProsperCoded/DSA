@@ -94,9 +94,12 @@ public class TransverseBinaryTree {
   public int height(){
     return height(root);
   }
+  private boolean isLeaf(Node node){
+    return node.leftChild == null && node.rightChild==null;
+  }
   private int height(Node root){
     if(root == null) return -1;
-    if(root.leftChild == null && root.rightChild==null) return 0;
+    if(isLeaf(root)) return 0;
 
     var l = height(root.leftChild);
     var r = height(root.rightChild);
@@ -106,13 +109,29 @@ public class TransverseBinaryTree {
   public int min(){
     return min(root);
   }
+  // ! This  can be used with BinarySearchTree and Binary Tree
   private int min(Node root){
     if(root == null) return Integer.MAX_VALUE;
-    if(root.leftChild == null && root.rightChild==null) return root.value;
+    if(isLeaf(root)) return root.value;
     var l = min(root.leftChild);
     var r = min(root.rightChild);
 
     return min(min(l, r), root.value);
   }
 
+  // ! This should only be used with Binary Search Tree
+  private int minSearchTree(Node root){
+    if(root == null) throw new IllegalStateException();
+
+    var current  = root;
+    var parent  =  current;
+
+    while(current!=null){
+      parent = current;
+      // * go to the minimum element, which is always at the left
+      current = current.leftChild;
+    }
+
+    return parent.value;
+  }
 }
