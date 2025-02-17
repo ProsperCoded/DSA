@@ -217,13 +217,31 @@ public class TransverseBinaryTree {
       result.addAll(valuesRight);
       return result;
     }
-    // ? return valid if either left right isn't null
+    // return valid if either left right isn't null
     else if (valuesLeft == null){
       return valuesRight;
     }else if(valuesRight == null){
       return valuesLeft;
     }
-    // ? return null, if both are null
+    // return null, if both are null
     return null;
+  }
+  
+  // ? Tutor solution (mosh )
+  public ArrayList<Integer> valuesAtKDistance2(int distance){
+    ArrayList<Integer> store = new ArrayList<>();
+   valuesAtKDistance2(distance, root, store);
+   return store;
+  }
+  private void valuesAtKDistance2(int distance, Node node, ArrayList<Integer> store){
+    if(node == null){
+      return;
+    }
+    if(distance == 0){
+      store.add(node.value);
+    }
+
+    valuesAtKDistance2(distance - 1, node.leftChild, store);
+    valuesAtKDistance2(distance - 1, node.rightChild, store);
   }
 }
