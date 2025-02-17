@@ -11,8 +11,8 @@ public class Main {
     tree.insert(8);
     tree.insert(10);
 
-    // var equals = tree.equal(tree2);
-    System.out.println(tree.find(6));
-    System.out.println(tree.valuesAtKDistance(2));
+    // tree.transverseLevelOrder();
+    // System.out.println(tree.height());
+    System.out.println(tree.getAncestors(5));
   }
 }

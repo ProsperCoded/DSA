@@ -57,6 +57,42 @@ public class TransverseBinaryTree {
     return false;
   };
 
+  // * Implement find using recursion
+  public boolean contains(int v){
+    return contains(v, root);
+  }
+  private boolean contains( int v, Node node){
+    if(node == null){
+      return false;
+    }
+    if(v == node.value)
+      return true;
+    
+      else if(v > node.value){
+        return contains(v, node.rightChild);
+      }
+      else {
+        return contains(v, node.leftChild);
+      }
+       
+  } 
+  
+  // * Check if two values are siblings 
+  public boolean areSiblings(int first, int second){
+    return areSiblings(first, second, root);
+  }
+  private boolean areSiblings(int f, int s, Node node){
+    if(isLeaf(node)){
+      return false;
+    }
+    if(node.leftChild.value ==f && node.rightChild. value == s || node.leftChild.value == s&& node.rightChild.value == f){
+      return true;
+    }
+    var validAtLeft = areSiblings(f, s, node.leftChild);
+    var validAtRight = areSiblings(f, s, node.rightChild);
+
+    return validAtLeft || validAtRight;
+  }
   public void transverseInOrder(){
     this.transverseInOrder(root);
   }
@@ -88,6 +124,15 @@ public class TransverseBinaryTree {
     transverseInOrder(root.rightChild);
     System.out.println(root.value);
   }
+  // bread first transversal
+  public void transverseLevelOrder(){
+    for( int i =0; i<= height(); i ++){
+      var list  = valuesAtKDistance2(i);
+      for (var value: list){
+        System.out.println(value);
+      }
+    }
+  }
   private int max(int l, int r){
     if(l > r) return l;
     return l;
@@ -108,7 +153,6 @@ public class TransverseBinaryTree {
 
     var l = height(root.leftChild);
     var r = height(root.rightChild);
-    System.out.println(root.value);
     return 1+ max(l, r);
   }
   public int min(){
@@ -139,6 +183,69 @@ public class TransverseBinaryTree {
     }
 
     return parent.value;
+  }
+  private int maxSearchTree(Node node){
+    if(root == null) throw new IllegalStateException();
+
+    var current = root;
+    var parent = current;
+
+    while(current != null){
+      parent = current ;
+      current = current.rightChild;
+    }
+    return parent.value;
+  }
+
+  public int size(){
+    return size(root);
+  }
+  private int size(Node node){
+    if(node == null){
+      return 0;
+    }
+    var nodesLeft = size(node.leftChild) ;
+    var nodesRight = size(node.rightChild);
+    return nodesLeft + nodesRight + 1;
+  }
+
+  public int countLeaves(){
+    return countLeaves(root);
+  }
+  private int countLeaves(Node node){
+    if(node == null){
+      return 0;
+    }
+    // check if it's a leave 
+    if (node.leftChild == null && node.rightChild == null){
+      return 1;
+    }
+
+    var leavesFromLeft  = countLeaves(node.leftChild);
+    var leavesFromRight = countLeaves(node.rightChild);
+    return leavesFromLeft + leavesFromRight;
+  }
+  
+  public ArrayList<Integer> getAncestors(int v){
+    ArrayList<Integer> store = new ArrayList<>();
+    var found = getAncestors(v, root, store);
+    if(!found) return null;
+    return store;
+  }
+  private boolean getAncestors(int v, Node node,ArrayList<Integer> store){
+    if(node == null){
+      return false;
+    }
+    if(v == node.value){
+      return true;
+    }
+    store.add(node.value);
+     if(v > node.value){
+      return getAncestors(v, node.rightChild, store);
+    }
+    else {
+      return getAncestors(v, node.leftChild, store);
+    }
   }
   // Check if tree equals another 
   public boolean equal(TransverseBinaryTree tree){
