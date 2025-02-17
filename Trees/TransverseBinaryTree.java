@@ -1,5 +1,8 @@
 package Trees;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.swing.TransferHandler.TransferSupport;
 
 // * My solution
@@ -24,7 +27,7 @@ public class TransverseBinaryTree {
     Node lastParent = null;
     while (current != null){
       lastParent = current;
-      if(v > root.value){
+      if(v > current.value){
         current = current.rightChild;
         
       }else {
@@ -111,6 +114,7 @@ public class TransverseBinaryTree {
   public int min(){
     return min(root);
   }
+  // * Minimum value in the tree
   // ! This  can be used with BinarySearchTree and Binary Tree
   private int min(Node root){
     if(root == null) return Integer.MAX_VALUE;
@@ -130,7 +134,7 @@ public class TransverseBinaryTree {
 
     while(current!=null){
       parent = current;
-      // * go to the minimum element, which is always at the left
+      // ? go to the minimum element, which is always at the left
       current = current.leftChild;
     }
 
@@ -141,6 +145,7 @@ public class TransverseBinaryTree {
     if(tree == null) return false;
     return equals(root, tree.root);
   }
+  // * Check if the tree is equal to another tree
   // ? solution by me(prosper coded)
   private boolean equals(Node tree1, Node tree2){
     // * both has the same tail 
@@ -169,10 +174,11 @@ public class TransverseBinaryTree {
       return first.value == second.value && equals2(first.leftChild, second.leftChild) && equals2(first.rightChild, second.rightChild);
     }
 
-    // * case where one is null and the other is not 
+    // ? case where one is null and the other is not 
     return false;
   }
 
+  // * Check if the tree is a binary search tree
   public boolean isBinarySearchTree(){
     //                       NODE ,   INFINITY,       INFINITY
     return isBinarySearchTree(root,  Integer.MIN_VALUE,Integer.MAX_VALUE);
@@ -188,5 +194,36 @@ public class TransverseBinaryTree {
     var rightIsValid = isBinarySearchTree(node.rightChild, node.value + 1, max);
 
     return rightIsValid;
+  }
+
+  // * Nodes at K distance 
+  // ? My solution 
+  public ArrayList<Integer> valuesAtKDistance(int k){
+    return valuesAtKDistance(k, root);
+  }
+  private ArrayList<Integer> valuesAtKDistance(int k, Node node){
+    if(node == null){
+      return null;
+    }
+    if(k == 0){
+      var values = new ArrayList<Integer>();
+      values.add(node.value);
+      return values;
+    }
+    var valuesLeft = valuesAtKDistance(k - 1, node.leftChild);
+    var valuesRight = valuesAtKDistance(k - 1, node.rightChild);
+    if(valuesLeft != null && valuesRight != null){
+      ArrayList<Integer> result = new ArrayList<>(valuesLeft);
+      result.addAll(valuesRight);
+      return result;
+    }
+    // ? return valid if either left right isn't null
+    else if (valuesLeft == null){
+      return valuesRight;
+    }else if(valuesRight == null){
+      return valuesLeft;
+    }
+    // ? return null, if both are null
+    return null;
   }
 }
