@@ -3,7 +3,7 @@ public class AVLTree {
     private AVLNode leftChild;
     private AVLNode rightChild;
     private int value;
-
+    public int height;
     public AVLNode(int v){
       this.value = v;
     }
@@ -14,6 +14,10 @@ public class AVLTree {
   }
   private AVLNode root;
 
+  public boolean isLeaf(AVLNode node){
+    return node.leftChild == null && node.rightChild == null;
+  }
+
   // * Insertion with recursion 
   public void insert(int v){
     if(root  == null) {
@@ -21,9 +25,6 @@ public class AVLTree {
       return;
     };
     insert(v, root);
-  }
-  public boolean isLeaf(AVLNode node){
-    return node.leftChild == null && node.rightChild == null;
   }
   private void insert(int v, AVLNode parent){
     if(parent == null) return;
@@ -59,7 +60,12 @@ public class AVLTree {
     }else {
       root.leftChild = insert2( value,root.leftChild);
     }
+    var height = Math.max(height(root.rightChild), height(root.leftChild)) + 1;
+    root.height = height;
     return root;
+  }
+  public int height(AVLNode node){
+    return (node == null) ? -1 : node.height;
   }
   // * Printing values 
   public void transverseInOrder(){
