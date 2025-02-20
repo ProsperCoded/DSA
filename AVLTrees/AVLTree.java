@@ -1,33 +1,37 @@
 public class AVLTree {
-  private class Node {
-    private Node leftChild;
-    private Node rightChild;
+  private class AVLNode {
+    private AVLNode leftChild;
+    private AVLNode rightChild;
     private int value;
 
-    public Node(int v){
+    public AVLNode(int v){
       this.value = v;
     }
+    @Override
+    public String toString(){
+      return "Value = " + value;
+    }
   }
-  private Node root;
+  private AVLNode root;
 
   // * Insertion with recursion 
   public void insert(int v){
     if(root  == null) {
-      root = new Node(v);
+      root = new AVLNode(v);
       return;
     };
     insert(v, root);
   }
-  public boolean isLeaf(Node node){
+  public boolean isLeaf(AVLNode node){
     return node.leftChild == null && node.rightChild == null;
   }
-  private void insert(int v, Node parent){
+  private void insert(int v, AVLNode parent){
     if(parent == null) return;
 
     if(v > parent.value){
       if(parent.rightChild == null){
         // insert right
-        var node = new Node(v);
+        var node = new AVLNode(v);
         parent.rightChild = node;
         return;
       }
@@ -35,19 +39,33 @@ public class AVLTree {
     }else {
       if(parent.leftChild == null){
         // insert left
-        var node = new Node(v);
+        var node = new AVLNode(v);
         parent.leftChild = node;
         return;
       }
       insert(v, parent.leftChild);
     }
   }
-
+  // ? Recursion insertion from mosh
+  public void insert2(int value){
+    root = insert2(value, root);
+  }
+  private AVLNode insert2(int value, AVLNode root){
+    if(root == null){
+      return new AVLNode(value);
+    }
+    if(value > root.value){
+      root.rightChild = insert2(value, root.rightChild);
+    }else {
+      root.leftChild = insert2( value,root.leftChild);
+    }
+    return root;
+  }
   // * Printing values 
   public void transverseInOrder(){
     this.transverseInOrder(root);
   }
-  private void transverseInOrder(Node root){
+  private void transverseInOrder(AVLNode root){
     if(root == null) return;
 
     transverseInOrder(root.leftChild);
