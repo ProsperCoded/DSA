@@ -2,17 +2,17 @@ package Trees;
 
 // * My solution
 public class BinarySearchTree {
-  private class Node {
-    private Node leftChild;
-    private Node rightChild;
-    private int value;
+  protected class Node {
+    public Node leftChild;
+    public Node rightChild;
+    public int value;
 
     public Node(int v){
       this.value = v;
     }
     // public 
   }
-  private Node root;
+  protected Node root;
 
   public void insert(int v){
     if(root == null){
@@ -23,7 +23,7 @@ public class BinarySearchTree {
     Node lastParent = null;
     while (current != null){
       lastParent = current;
-      if(v > root.value){
+      if(v > current.value){
         current = current.rightChild;
         
       }else {
