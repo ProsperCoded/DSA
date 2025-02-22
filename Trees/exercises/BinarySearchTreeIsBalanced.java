@@ -60,8 +60,8 @@ public class BinarySearchTreeIsBalanced {
     var leftIsBalanced = isBalanced(root.leftChild);
     var rightIsBalanced = isBalanced(root.rightChild);
 
-    var balanced =  !isLeftHeavy(root)&& !isRightHeavy(root);
-    return balanced && leftIsBalanced && rightIsBalanced;
+    var rootIsBalanced =  !isLeftHeavy(root)&& !isRightHeavy(root);
+    return rootIsBalanced && leftIsBalanced && rightIsBalanced;
   }
 
   private boolean isLeftHeavy(Node node){
@@ -75,5 +75,19 @@ public class BinarySearchTreeIsBalanced {
   }
   private int balanceFactor(Node node){
     return height(node.leftChild) -  height(node.rightChild);
+  }
+
+  public boolean isPerfect(){
+    return isPerfect(root);
+  }
+  private boolean isPerfect(Node root){
+    if(root == null) return true;
+    var leftIsPerfect = isPerfect(root.leftChild);
+    var rightIsPerfect = isPerfect(root.rightChild);
+
+    var rootIsPerfect = (root.leftChild == null && root.rightChild == null) || (root.leftChild != null && root.rightChild != null);
+
+    return rootIsPerfect && leftIsPerfect && rightIsPerfect;
+
   }
 }
