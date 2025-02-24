@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Main {
-  public static void main(String[] args){
+  public static void main(String[] args) {
 
     var queue = new PriorityQueue(5);
     queue.insert(4);
@@ -17,7 +17,8 @@ public class Main {
     // queue.insert(3);
     System.out.println(queue.toString());
   }
-  public static LinkedList<Integer> reverse(Queue<Integer> queue){
+
+  public static LinkedList<Integer> reverse(Queue<Integer> queue) {
     LinkedList<Integer> store = new LinkedList<Integer>();
     while (!queue.isEmpty()) {
       var element = queue.remove();

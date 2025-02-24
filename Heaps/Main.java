@@ -10,6 +10,7 @@ public class Main {
       heap.insert(number);
     }
 
+    // to sort incremental order, simply modify increment to go in reverse i.e (i--)
     for (var i = 0; i < numbers.length; i++) {
       numbers[i] = heap.remove();
     }
