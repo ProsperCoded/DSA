@@ -1,10 +1,10 @@
 package Trees;
 
-import Trees.exercises.BinarySearchTreeIsBalanced;
+import Trees.exercises.Exercises;
 
 public class Main {
   public static void main(String[] args) {
-    var tree = new BinarySearchTreeIsBalanced();
+    var tree = new Exercises();
     tree.insert(7);
     tree.insert(4);
     tree.insert(9);

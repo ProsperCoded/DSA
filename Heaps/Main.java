@@ -2,6 +2,8 @@ package Heaps;
 
 import java.util.Arrays;
 
+import Heaps.exercises.Exercises;
+
 public class Main {
   public static void sort(int[] numbers) {
     var heap = new MaxHeap2();
@@ -18,7 +20,9 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    int[] numbers = { 5, 3, 10, 1, 4, 2 };
-    sort(numbers);
+    Exercises utils = new Exercises();
+    int[] items = { 11, 9, 4, 12, 10, 5 };
+    int[] heapifiedItems = utils.heapiffy(items);
+    System.out.println(Arrays.toString(heapifiedItems));
   }
 }
