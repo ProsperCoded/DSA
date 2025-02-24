@@ -31,8 +31,8 @@ public class MaxHeap2 {
   private void bubbleDown() {
     var index = 0;
 
-    while (index <= size && !isValidParent(size)) {
-      var largerChildIndex = this.largerChildIndex(size);
+    while (index <= size && !isValidParent(index)) {
+      var largerChildIndex = this.largerChildIndex(index);
       swap(index, largerChildIndex);
       index = largerChildIndex;
     }

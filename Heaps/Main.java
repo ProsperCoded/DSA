@@ -1,16 +1,23 @@
 package Heaps;
 
+import java.util.Arrays;
+
 public class Main {
-  public static void main(String[] args) {
+  public static void sort(int[] numbers) {
     var heap = new MaxHeap2();
-    heap.insert(10);
-    heap.insert(9);
-    heap.insert(8);
-    heap.insert(4);
-    heap.insert(5);
-    heap.insert(6);
-    heap.insert(7);
-    heap.insert(11);
-    System.out.println(heap.toString());
+
+    for (var number : numbers) {
+      heap.insert(number);
+    }
+
+    for (var i = 0; i < numbers.length; i++) {
+      numbers[i] = heap.remove();
+    }
+    System.out.println(Arrays.toString(numbers));
+  }
+
+  public static void main(String[] args) {
+    int[] numbers = { 5, 3, 10, 1, 4, 2 };
+    sort(numbers);
   }
 }
