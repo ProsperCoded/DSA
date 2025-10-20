@@ -1,4 +1,4 @@
-package Queues;
+package Queues2;
 
 // * Insertion  - O(n)
 // * Deletion   - O(1)
