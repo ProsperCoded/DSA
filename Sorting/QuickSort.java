@@ -17,11 +17,10 @@ public class QuickSort {
     int boundary = current - 1;
     int start = current;
     int end = pivot;
-    // int current = 0;
 
     while (current < pivot) {
+      // if less than pivote move current into left patition
       if (items[current] < items[pivot]) {
-        // move current into left patition
         // if not next to each other just swap
         if (current > boundary + 1) {
           int temp = items[current];
@@ -39,19 +38,11 @@ public class QuickSort {
       items[boundary + 1] = items[pivot];
       items[pivot] = temp;
     }
-    // boundary++;
-    pivot = boundary;
+    pivot = boundary + 1;
     // sort left
-    sort(items, start, pivot);
+    sort(items, start, pivot - 1);
     // sort right
     sort(items, pivot + 1, end);
-
-  }
-
-  public static int getPivot(int[] items) {
-
-    return items.length - 1;
-
   }
 
   public static void main(String[] args) {
