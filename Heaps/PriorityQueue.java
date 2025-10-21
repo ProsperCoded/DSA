@@ -5,7 +5,7 @@ package Heaps;
 // * Deletion   - O(log n)
 
 public class PriorityQueue {
-  private MaxHeap2 heap = new MaxHeap2();
+  private MaxHeap_Mosh heap = new MaxHeap_Mosh();
 
   public void enqueue(int item) {
     heap.insert(item);

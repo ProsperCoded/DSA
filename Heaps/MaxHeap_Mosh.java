@@ -3,7 +3,7 @@ package Heaps;
 import java.util.Arrays;
 
 // solution from tutorial
-public class MaxHeap2 {
+public class MaxHeap_Mosh {
   private int[] items = new int[10];
   private int size;
 

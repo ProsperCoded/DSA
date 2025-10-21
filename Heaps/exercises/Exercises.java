@@ -2,7 +2,7 @@ package Heaps.exercises;
 
 import java.util.Arrays;
 
-import Heaps.MaxHeap2;
+import Heaps.MaxHeap_Mosh;
 
 public class Exercises {
   public int[] heapiffy(int[] items) {
@@ -111,7 +111,7 @@ public class Exercises {
   }
 
   public static void sort(int[] numbers) {
-    var heap = new MaxHeap2();
+    var heap = new MaxHeap_Mosh();
 
     for (var number : numbers) {
       heap.insert(number);

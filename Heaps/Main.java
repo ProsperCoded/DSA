@@ -6,7 +6,7 @@ import Heaps.exercises.Exercises;
 
 public class Main {
   public static void sort(int[] numbers) {
-    var heap = new MaxHeap2();
+    var heap = new MaxHeap_Mosh();
 
     for (var number : numbers) {
       heap.insert(number);
