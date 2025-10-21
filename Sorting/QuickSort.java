@@ -10,13 +10,13 @@ package Sorting;
 // average of first middle and last item 
 
 public class QuickSort {
-  public static void sort(int[] items, int current, int pivot) {
-    if (current >= pivot) {
+  public static void sort(int[] items, int start, int end) {
+    if (start >= end) {
       return;
     }
-    int boundary = current - 1;
-    int start = current;
-    int end = pivot;
+    int boundary = start - 1;
+    int current = start;
+    int pivot = end;
 
     while (current < pivot) {
       // if less than pivote move current into left patition
